@@ -1,19 +1,23 @@
 {
   "name": "bolt",
+  "version": "1.0.0",
   "description": "An AI Agent",
   "private": true,
   "license": "MIT",
-  "sideEffects": false,
   "type": "module",
-  "version": "1.0.0",
+  "sideEffects": false,
   "author": {
     "name": "bolt.diy team",
     "email": "maintainers@bolt.diy"
   },
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "packageManager": "pnpm@9.4.0",
   "scripts": {
     "deploy": "npm run build && wrangler pages deploy",
     "build": "remix vite:build",
-    "dev": "node pre-start.cjs  && remix vite:dev",
+    "dev": "node pre-start.cjs && remix vite:dev",
     "test": "vitest --run",
     "test:watch": "vitest",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint app",
@@ -28,7 +32,7 @@
     "typecheck": "tsc",
     "typegen": "wrangler types",
     "preview": "pnpm run build && pnpm run start",
-    "prepare": "husky",
+    "prepare": "husky install",
     "clean": "node scripts/clean.js",
     "electron:build:deps": "concurrently \"pnpm electron:build:main\" \"pnpm electron:build:preload\" --kill-others-on-fail",
     "electron:build:main": "vite build --config ./electron/main/vite.config.ts",
@@ -39,9 +43,6 @@
     "electron:build:win": "rm -rf dist && pnpm electron:build:renderer && pnpm electron:build:deps && electron-builder --win",
     "electron:build:linux": "rm -rf dist && pnpm electron:build:renderer && pnpm electron:build:deps && electron-builder --linux",
     "electron:build:dist": "rm -rf dist && pnpm electron:build:renderer && pnpm electron:build:deps && electron-builder --mwl"
-  },
-  "engines": {
-    "node": ">=18.18.0"
   },
   "dependencies": {
     "@ai-sdk/amazon-bedrock": "1.0.6",
@@ -206,6 +207,6 @@
   },
   "resolutions": {
     "@typescript-eslint/utils": "^8.0.0-alpha.30"
-  },
-  "packageManager": "pnpm@9.4.0"
+  }
 }
+
